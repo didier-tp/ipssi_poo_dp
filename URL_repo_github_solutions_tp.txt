@@ -1,0 +1,6 @@
+https://github.com/didier-tp/ipssi_poo_dp.git
+
+à cloner via git clone
+et à actualiser via git pull
+
+ou bien  à directement consulter via un navigateur internet

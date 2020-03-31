@@ -1,0 +1,7 @@
+http://www.d-defrance.fr/ngr/qcm
+
+choisir mode "eval"
+organisation = ipssi
+...
+apres "actualiser la liste" choisir "poo"
+et cliquer sur "effectuer qcm"
