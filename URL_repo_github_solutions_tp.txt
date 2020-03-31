@@ -1,4 +1,4 @@
-https://github.com/didier-tp/ipssi_poo_dp.git
+https://github.com/didier-tp/ipssi_poo_dp
 
 à cloner via git clone
 et à actualiser via git pull
