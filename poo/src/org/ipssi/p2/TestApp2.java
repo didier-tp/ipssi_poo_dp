@@ -3,6 +3,7 @@ package org.ipssi.p2;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class TestApp2 {
 
@@ -15,8 +16,15 @@ public class TestApp2 {
 		List<Integer> listeInt = new ArrayList<>();
 		listeInt.add(6); listeInt.add(3); listeInt.add(7); listeInt.add(2);
 		System.out.println(listeInt);
-		Collections.sort(listeInt);
-		System.out.println(listeInt);
+		//Collections.sort(listeInt);
+		//System.out.println(listeInt);
+		
+		List<Integer> listeTransformee =
+		listeInt.stream().filter( (e) -> (e <= 5))
+		                 .map( (e) -> e*10)
+		                 .sorted( (e1,e2)-> e1-e2)
+		                 .collect(Collectors.toList());
+		System.out.println(listeTransformee);
 		
 		List<Assiette> listeAssiettes = new ArrayList<>();
 		listeAssiettes.add(new Assiette("blanche",6)); 
