@@ -4,7 +4,9 @@ public class Employe extends Personne {
 	
 	private Integer salaireFixe;
 	
-	
+	public Integer getSalaire() {
+		return this.salaireFixe;
+	}
 	
 	@Override
 	public String toString() {
