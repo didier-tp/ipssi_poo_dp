@@ -23,7 +23,9 @@ public class MyServlet extends HttpServlet {
 		String msg = request.getParameter("msg");
 		PrintWriter out = response.getWriter();
 		out.println("<html><head><title>resServlet</title></head>");
-		out.println("<body> hello "+msg+"</body></html>");
+		out.println("<body>");
+		out.println("hello <b>"+msg+"</b>");
+		out.println("</body></html>");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
