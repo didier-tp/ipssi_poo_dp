@@ -1,0 +1,11 @@
+ASI D21.2 ?
+POO (déja abordé , en java ?) , autres formations suivies ?
+1,2,3 avril 2020:
+-----------------
+* POO avancé (rappels/revisions , generics , design patterns)
+* Tps avec un peu de communication http et securité web
+
+-----
+jdk 1.8 ou+
+eclipse_jee ou ...
+maven ...
