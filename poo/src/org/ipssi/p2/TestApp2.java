@@ -17,6 +17,18 @@ public class TestApp2 {
 		System.out.println(listeInt);
 		Collections.sort(listeInt);
 		System.out.println(listeInt);
+		
+		List<Assiette> listeAssiettes = new ArrayList<>();
+		listeAssiettes.add(new Assiette("blanche",6)); 
+		listeAssiettes.add(new Assiette("rouge",3));
+		listeAssiettes.add(new Assiette("bleu",7)); 
+		listeAssiettes.add(new Assiette("vert",2)); 
+		System.out.println(listeAssiettes);
+		Collections.sort(listeAssiettes,
+				(a1,a2) -> { if(a1.getNumero() < a2.getNumero()) return -1;
+				                             else return 1; });
+		System.out.println(listeAssiettes);
+		
 	}
 	
 	public static void m1() {
