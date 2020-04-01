@@ -7,7 +7,11 @@ public class TestApp {
 		p1 = new Personne();
 		p1.setNom("toto");
 		System.out.println(p1.getNom());
-
+		
+		Personne p2 = new Personne("Defrance","didier",1.82);
+		p2.grandir(0.05);
+		System.out.println(p2.toString());
+		System.out.println(p2);
 	}
 
 }
