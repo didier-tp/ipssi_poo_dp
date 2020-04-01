@@ -1,6 +1,6 @@
 package org.ipssi.p1;
 
-public class LivretA {
+public class LivretA extends ChoseAvecCouleur implements Affichable , I2{
 	public static final double TAUX_PAR_DEFAUT = 0.005;
 	private Integer numero;
 	private Double solde;
@@ -29,6 +29,30 @@ public class LivretA {
 	}
 	public static void setTauxInteret(Double tauxInteret) {
 		LivretA.tauxInteret = tauxInteret;
+	}
+
+	@Override
+	public void afficher() {
+		System.out.println("LivretA , details ="+this.toString());
+		
+	}
+
+	@Override
+	public void afficherV2(String prefixe) {
+		System.out.println(prefixe + " LivretA , details ="+this.toString());
+		
+	}
+
+	@Override
+	public void m2() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void afficherAvecCouleur() {
+		this.afficherV2(this.getCouleur());
+		
 	}
 	
 	

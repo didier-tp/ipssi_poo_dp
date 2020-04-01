@@ -10,12 +10,18 @@ public class TestApp {
 		p1 = new Personne();
 		p1.setNom("toto");
 		System.out.println(p1.getNom());
+		
 		try {
+			p1.setTaille(150.0);
+			System.out.println("taille 1="+p1.getTaille());
 			p1.setTaille(-50.0);
-		} catch (Exception e) {
+			
+		} catch (MyException e) {
 			e.printStackTrace();
-			//System.err.println(e.getMessage());
+		}finally {
+			System.out.println("taille 2="+p1.getTaille());
 		}
+		
 		System.out.println("p1="+p1.toString());
 		
 		Personne p2 = new Personne("Defrance","didier",1.82);
@@ -75,14 +81,36 @@ public class TestApp {
 		System.out.println(Math.abs(-5));
 		
 	}
+	
+	public static void m4() {
+		Affichable choseAffichable = null;
+		
+		Personne p1 = new Personne("Aire", "Axelle" , 1.68);
+		
+		LivretA l1 = new LivretA();
+		l1.setNumero(1);l1.setSolde(200.0);
+		
+		choseAffichable = p1;
+		choseAffichable.afficher();
+		
+		choseAffichable = l1;
+		choseAffichable.afficher();
+		
+		//ChoseAvecCouleur c = new ChoseAvecCouleur(); //new direct sur classe abstraite
+		ChoseAvecCouleur c = new LivretA();
+		c.setCouleur("red");
+		c.afficherAvecCouleur();
+	}
+	
 
 	public static void main(String[] args) {
 		/*TestApp testApp1 = new TestApp(); 
 		testApp1.m3(); // si m3() n'est pas static
 		*/
 		//m3();
-		m1();
+		//m1();
 		//m2();
+		m4();
 	}
 
 }

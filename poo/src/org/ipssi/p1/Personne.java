@@ -1,6 +1,7 @@
 package org.ipssi.p1;
 
-public class Personne /*extends Object */{
+//classe concrète
+public class Personne /*extends Object */ implements Affichable {
 	private String nom;
 	private String prenom;
 	private Double taille; // ex: 1.80 pour 1m80 ou null
@@ -44,10 +45,21 @@ public class Personne /*extends Object */{
 	public Double getTaille() {
 		return taille;
 	}
-	public void setTaille(Double taille) {
+	public void setTaille(Double taille) throws MyException{
 		if(taille <0)
-			throw new RuntimeException("taille negative invalide");
+			//throw new IllegalArgumentException("taille negative invalide");
+			throw new MyException("taille negative invalide");
 		this.taille = taille;
+	}
+
+	@Override
+	public void afficher() {
+		System.out.println("Personne , details ="+this.toString());
+	}
+
+	@Override
+	public void afficherV2(String prefixe) {
+		System.out.println( prefixe + " details ="+this.toString());
 	}
 
 	
