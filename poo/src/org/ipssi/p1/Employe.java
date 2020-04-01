@@ -2,7 +2,7 @@ package org.ipssi.p1;
 
 public class Employe extends Personne {
 	
-	private Integer salaireFixe;
+	protected Integer salaireFixe;
 	
 	public Integer getSalaire() {
 		return this.salaireFixe;

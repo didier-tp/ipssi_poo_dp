@@ -10,6 +10,13 @@ public class TestApp {
 		p1 = new Personne();
 		p1.setNom("toto");
 		System.out.println(p1.getNom());
+		try {
+			p1.setTaille(-50.0);
+		} catch (Exception e) {
+			e.printStackTrace();
+			//System.err.println(e.getMessage());
+		}
+		System.out.println("p1="+p1.toString());
 		
 		Personne p2 = new Personne("Defrance","didier",1.82);
 		p2.grandir(0.05);
@@ -49,11 +56,33 @@ public class TestApp {
 		   System.out.println("**" + e.getSalaire()); //polymorphisme en boucle
 	   }
 	}
+	
+	public static void m3() {
+		LivretA l1 = new LivretA();
+		l1.setNumero(1);l1.setSolde(200.0);
+		System.out.println(l1);
+		
+		LivretA l2 = new LivretA();
+		l2.setNumero(2);l2.setSolde(300.0);
+		System.out.println(l1);
+		
+		LivretA.setTauxInteret(0.001);
+		System.out.println(l1);
+		System.out.println(l2);
+		
+		System.out.println("taux par defaut pour livretA="+LivretA.TAUX_PAR_DEFAUT);
+		
+		System.out.println(Math.abs(-5));
+		
+	}
 
 	public static void main(String[] args) {
-		
-		//m1();
-		m2();
+		/*TestApp testApp1 = new TestApp(); 
+		testApp1.m3(); // si m3() n'est pas static
+		*/
+		//m3();
+		m1();
+		//m2();
 	}
 
 }

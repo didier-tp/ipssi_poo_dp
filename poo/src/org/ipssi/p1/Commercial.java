@@ -6,7 +6,9 @@ public class Commercial extends Employe{
 	
 	@Override
 	public Integer getSalaire() {
-		Integer baseSalaire = super.getSalaire();
+		//Integer baseSalaire = super.getSalaire();
+		//Integer baseSalaire = this.getSalaireFixe();
+		Integer baseSalaire = this.salaireFixe; //ok si protected dans classe Employe
 		return (int) Math.floor(baseSalaire + ventes * tauxCommission);
 	}
 	

@@ -45,6 +45,8 @@ public class Personne /*extends Object */{
 		return taille;
 	}
 	public void setTaille(Double taille) {
+		if(taille <0)
+			throw new RuntimeException("taille negative invalide");
 		this.taille = taille;
 	}
 
