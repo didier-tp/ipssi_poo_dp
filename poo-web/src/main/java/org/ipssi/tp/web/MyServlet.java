@@ -8,8 +8,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.ipssi.tp.dto.ResConv;
 import org.ipssi.tp.service.ServiceConversion;
 import org.ipssi.tp.service.ServiceConversionImpl;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 
 //@WebServlet("/MyServlet")
@@ -19,9 +22,8 @@ public class MyServlet extends HttpServlet {
     public MyServlet() {
         super();
     }
-
-	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    
+    protected void doGetV1Html(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		String source = request.getParameter("source");
 		String cible = request.getParameter("cible");
@@ -34,6 +36,25 @@ public class MyServlet extends HttpServlet {
 		double resConv =serviceConv.convertir(Double.parseDouble(montant), source, cible);
 		out.println("somme convertie <b>"+resConv+"</b>");
 		out.println("</body></html>");
+	}
+
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String source = request.getParameter("source");
+		String cible = request.getParameter("cible");
+		String montant = request.getParameter("montant");
+		PrintWriter out = response.getWriter();
+		response.setContentType("application/json");
+		//jackson = libraie java open source qui gère le format json
+		ServiceConversion serviceConv = ServiceConversionImpl.getInstance();
+		double montantConv =serviceConv.convertir(Double.parseDouble(montant), source, cible);
+		ResConv resConv = new ResConv(Double.parseDouble(montant),
+				                      source,
+				                      cible,
+				                      montantConv);
+		ObjectMapper objMapperJackson = new ObjectMapper();
+		String resConAsJsonString = objMapperJackson.writeValueAsString(resConv);
+		out.println(resConAsJsonString);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
