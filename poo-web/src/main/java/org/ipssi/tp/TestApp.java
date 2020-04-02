@@ -3,6 +3,7 @@ package org.ipssi.tp;
 import java.util.List;
 
 import org.ipssi.tp.dao.DeviseDAO;
+import org.ipssi.tp.dao.DeviseDaoJdbc;
 import org.ipssi.tp.dao.DeviseDaoMemory;
 import org.ipssi.tp.entity.Devise;
 import org.ipssi.tp.service.ServiceConversion;
@@ -28,6 +29,12 @@ public class TestApp {
 		for(Devise d : listeDev) {
 			System.out.println("devise="+d);
 		}
+		DeviseDAO deviseDaoJdbc = new DeviseDaoJdbc();
+		List<Devise> listeDev2= deviseDaoJdbc.getAllDevises();
+		for(Devise d : listeDev2) {
+			System.out.println("devise(via jdbc)="+d);
+		}
+		
 	}
 
 }
