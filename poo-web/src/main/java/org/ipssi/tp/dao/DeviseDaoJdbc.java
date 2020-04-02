@@ -12,6 +12,17 @@ import org.ipssi.tp.entity.Devise;
 
 public class DeviseDaoJdbc implements DeviseDAO {
 	
+	//code classique du "design pattern SINGLETON" sans s'appuyer sur spring:
+			private static DeviseDaoJdbc uniqueInstance = null;
+			
+			public  static DeviseDaoJdbc getInstance()	{ 
+				if (uniqueInstance == null) {
+			         uniqueInstance = new DeviseDaoJdbc();
+			     }
+			return uniqueInstance; // instance nouvellement ou anciennement créée .
+			}
+
+	
 	Connection etablirConnection() {
 		Connection cn=null;
 		try {
