@@ -1,5 +1,7 @@
 package org.ipssi.tp;
 
+import java.util.List;
+
 import org.ipssi.tp.dao.DeviseDAO;
 import org.ipssi.tp.dao.DeviseDaoMemory;
 import org.ipssi.tp.entity.Devise;
@@ -17,9 +19,14 @@ public class TestApp {
 		double resConv =serviceConv.convertir(200, "EUR", "USD");
 		System.out.println("resConv="+resConv);
 		
-		DeviseDAO deviseDao = new DeviseDaoMemory();
-		Devise deviseEuro =deviseDao.getDeviseByCode("EUR");
+		DeviseDAO deviseDao = DeviseDaoMemory.getInstance();
+		Devise deviseEuro =deviseDao.getDeviseByCode("USD");
 		System.out.println(deviseEuro);
+		deviseDao.createDevise(new Devise("c1","M1",1.123));
+		List<Devise> listeDev= deviseDao.getAllDevises();
+		for(Devise d : listeDev) {
+			System.out.println("devise="+d);
+		}
 	}
 
 }
