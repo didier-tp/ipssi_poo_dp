@@ -1,0 +1,8 @@
+MyServlet : gérer les requêtes et réponses HTTP
+ServiceConversion : effectuer un calcul de conversion
+Devise (code, nom, change) : Données stockées et récupérées en base
+DeviseDAO (DAO=Data Access Object) : pour déclencher requetes SQL
+MyDataSource : etablir connexion à la base
+_____
+
+...

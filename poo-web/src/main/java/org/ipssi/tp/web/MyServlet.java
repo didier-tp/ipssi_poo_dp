@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.ipssi.tp.service.ServiceConversion;
+import org.ipssi.tp.service.ServiceConversionImpl;
+
 
 //@WebServlet("/MyServlet")
 public class MyServlet extends HttpServlet {
@@ -26,7 +29,10 @@ public class MyServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		out.println("<html><head><title>resServlet</title></head>");
 		out.println("<body>");
-		out.println("somme convertie <b>"+200+"</b>");
+		//ServiceConversion serviceConv = new ServiceConversionImpl();
+		ServiceConversion serviceConv = ServiceConversionImpl.getInstance();
+		double resConv =serviceConv.convertir(Double.parseDouble(montant), source, cible);
+		out.println("somme convertie <b>"+resConv+"</b>");
 		out.println("</body></html>");
 	}
 
