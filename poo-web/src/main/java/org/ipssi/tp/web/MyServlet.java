@@ -20,11 +20,13 @@ public class MyServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		String msg = request.getParameter("msg");
+		String source = request.getParameter("source");
+		String cible = request.getParameter("cible");
+		String montant = request.getParameter("montant");
 		PrintWriter out = response.getWriter();
 		out.println("<html><head><title>resServlet</title></head>");
 		out.println("<body>");
-		out.println("hello <b>"+msg+"</b>");
+		out.println("somme convertie <b>"+200+"</b>");
 		out.println("</body></html>");
 	}
 
