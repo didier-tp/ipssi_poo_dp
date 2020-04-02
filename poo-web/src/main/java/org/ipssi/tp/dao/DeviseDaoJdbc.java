@@ -2,6 +2,7 @@ package org.ipssi.tp.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -43,8 +44,29 @@ public class DeviseDaoJdbc implements DeviseDAO {
 
 	@Override
 	public Devise getDeviseByCode(String code) {
-		// TODO Auto-generated method stub
-		return null;
+		Devise dev = null;
+		Connection cn = null;
+		try {
+			cn = this.etablirConnection();
+			PreparedStatement st = cn.prepareStatement("SELECT * FROM Devise WHERE code=?");
+			st.setString(1, code);
+			ResultSet rs = st.executeQuery();
+			while(rs.next()) {
+			    dev= new Devise(rs.getString("code"),rs.getString("nom"),
+				           rs.getDouble("eChange"));
+			}
+			rs.close();
+			st.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		finally {
+			try{cn.close();}
+			catch(Exception ex) { 
+				System.err.println(ex.getMessage());
+			}
+		}
+		return dev;
 	}
 
 	@Override

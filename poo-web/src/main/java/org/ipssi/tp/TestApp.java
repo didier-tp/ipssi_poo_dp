@@ -34,6 +34,8 @@ public class TestApp {
 		for(Devise d : listeDev2) {
 			System.out.println("devise(via jdbc)="+d);
 		}
+		Devise deviseEuroViaJdbc =deviseDaoJdbc.getDeviseByCode("USD");
+		System.out.println(deviseEuroViaJdbc);
 		
 	}
 
