@@ -18,6 +18,7 @@ public class TestApp {
 		ServiceConversion serviceConv = ServiceConversionImpl.getInstance();
 		double resConv =serviceConv.convertir(200, "EUR", "USD");
 		System.out.println("resConv="+resConv);
+		System.out.println("change du Yen="+serviceConv.recupererTauxChange("JPY"));
 		
 		DeviseDAO deviseDao = DeviseDaoMemory.getInstance();
 		Devise deviseEuro =deviseDao.getDeviseByCode("USD");

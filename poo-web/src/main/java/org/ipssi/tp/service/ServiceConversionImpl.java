@@ -1,5 +1,9 @@
 package org.ipssi.tp.service;
 
+import org.ipssi.tp.dao.DeviseDAO;
+import org.ipssi.tp.dao.DeviseDaoMemory;
+import org.ipssi.tp.entity.Devise;
+
 //1 seule instance partagée de cette classe "ServiceConversionImpl" suffit
 //traitement (calculs , ...) en mode "stateless"
 //si plusieurs instances inutiles : gachis de mémoire et mauvaises perf (garbage collector)
@@ -8,6 +12,8 @@ public class ServiceConversionImpl implements ServiceConversion {
 	
 	//code classique du "design pattern SINGLETON" sans s'appuyer sur spring:
 	private static ServiceConversionImpl uniqueInstance = null;
+	
+	private DeviseDAO deviseDao = DeviseDaoMemory.getInstance();
 	
 	public  static ServiceConversionImpl getInstance()	{ 
 		if (uniqueInstance == null) {
@@ -21,12 +27,15 @@ public class ServiceConversionImpl implements ServiceConversion {
 
 	@Override
 	public double convertir(double montant, String codeSource, String codeCible) {
-		return montant * 1.5;
+		Devise deviseSource = this.deviseDao.getDeviseByCode(codeSource);
+		Devise deviseCible = this.deviseDao.getDeviseByCode(codeCible);
+		return montant * deviseCible.geteChange() / deviseSource.geteChange();
 	}
 
 	@Override
 	public double recupererTauxChange(String codeDevise) {
-		return 0;
+		Devise d = this.deviseDao.getDeviseByCode(codeDevise);
+		return d.geteChange();
 	}
 
 }
