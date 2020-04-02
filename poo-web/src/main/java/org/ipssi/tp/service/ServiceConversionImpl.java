@@ -1,6 +1,7 @@
 package org.ipssi.tp.service;
 
 import org.ipssi.tp.dao.DeviseDAO;
+import org.ipssi.tp.dao.DeviseDaoFactory;
 import org.ipssi.tp.dao.DeviseDaoMemory;
 import org.ipssi.tp.entity.Devise;
 
@@ -13,7 +14,10 @@ public class ServiceConversionImpl implements ServiceConversion {
 	//code classique du "design pattern SINGLETON" sans s'appuyer sur spring:
 	private static ServiceConversionImpl uniqueInstance = null;
 	
-	private DeviseDAO deviseDao = DeviseDaoMemory.getInstance();
+	//private DeviseDAO deviseDao = DeviseDaoMemory.getInstance();//V1
+	
+	//via la favrique qui créer et retourner le dao en version Memory ou jdbc
+	private DeviseDAO deviseDao = DeviseDaoFactory.createDeviseDao();
 	
 	public  static ServiceConversionImpl getInstance()	{ 
 		if (uniqueInstance == null) {

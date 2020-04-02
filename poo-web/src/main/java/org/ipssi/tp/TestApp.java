@@ -20,7 +20,7 @@ public class TestApp {
 		double resConv =serviceConv.convertir(200, "EUR", "USD");
 		System.out.println("resConv="+resConv);
 		System.out.println("change du Yen="+serviceConv.recupererTauxChange("JPY"));
-		
+		/*
 		DeviseDAO deviseDao = DeviseDaoMemory.getInstance();
 		Devise deviseEuro =deviseDao.getDeviseByCode("USD");
 		System.out.println(deviseEuro);
@@ -36,7 +36,7 @@ public class TestApp {
 		}
 		Devise deviseEuroViaJdbc =deviseDaoJdbc.getDeviseByCode("USD");
 		System.out.println(deviseEuroViaJdbc);
-		
+		*/
 	}
 
 }

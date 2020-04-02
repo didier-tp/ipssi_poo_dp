@@ -22,7 +22,7 @@ public class DeviseDaoMemory implements DeviseDAO {
 		return uniqueInstance; // instance nouvellement ou anciennement créée .
 		}
 
-	private DeviseDaoMemory() {
+	public DeviseDaoMemory() {
 	    //jeux de données initial:
 		createDevise(new Devise("EUR","euro",1.0));
 		createDevise(new Devise("USD","dollar",1.1));
