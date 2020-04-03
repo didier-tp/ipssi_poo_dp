@@ -45,7 +45,7 @@ public class MyServlet extends HttpServlet {
 		switch(action) {
 		case "conversion":
 			//ws = new WsBasic();
-			ws = new PerfWsDeco(new LogWsDeco(new WsBasic()));
+			ws = new TokenWsDeco(new PerfWsDeco(new LogWsDeco(new WsBasic())));
 			break;
 		case "login" :
 			ws = new WsloginBasic();

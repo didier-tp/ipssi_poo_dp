@@ -1,9 +1,11 @@
-var divrRes;
+var divRes,divMsg;
 window.onload=function(){
 
 	var btnConv = document.getElementById("btnConv");
+	var btnlogin = document.getElementById("btnLogin");
 	
 	divRes = document.getElementById("divRes");
+	divMsg = document.getElementById("divMsg");
 	
 	btnConv.addEventListener("click" , function (){
 		var codeSource = document.getElementById("source").value;
@@ -16,6 +18,28 @@ window.onload=function(){
 		makeAjaxGetRequest(url ,  cbGererResultat);
 	});
 	
+	
+	btnLogin.addEventListener("click" , function (){
+		var username = document.getElementById("username").value;
+		var password= document.getElementById("password").value;
+		
+		var url= "MyServlet?action=login&username="+ username+"&password="+password;
+		console.log(url);
+		makeAjaxGetRequest(url ,  cbGererResultatLogin);
+	});
+	
+}
+
+function cbGererResultatLogin(texteReponse){
+	//divRes.innerHTML = texteReponse;
+	var resLogin = JSON.parse(texteReponse /* au format json string */)
+	divMsg.innerHTML= resLogin.message; 
+	if(resLogin.token!=null){
+		console.log(resLogin.token);
+		localStorage.setItem("token",resLogin.token);
+	}else{
+		localStorage.setItem("token",null);
+	}
 }
 
 function cbGererResultat(texteReponse){
@@ -31,6 +55,11 @@ function makeAjaxGetRequest(url,callback) {
 		    callback(xhr.responseText);
 		}
 	};
+	var token = localStorage.getItem("token");
+	
 	xhr.open("GET", url, true);
+	if(token!=null){
+		xhr.setRequestHeader("Authorization", "Bearer "+token);
+	}
 	xhr.send(null);
 }
