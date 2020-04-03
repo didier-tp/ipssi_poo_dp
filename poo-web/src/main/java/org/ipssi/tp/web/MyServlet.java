@@ -40,9 +40,18 @@ public class MyServlet extends HttpServlet {
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String action = request.getParameter("action"); //login ou bien conversion
+		AbstractWs ws = null;
+		switch(action) {
+		case "conversion":
+			//ws = new WsBasic();
+			ws = new PerfWsDeco(new LogWsDeco(new WsBasic()));
+			break;
+		case "login" :
+			ws = new WsloginBasic();
+			break;
+		}
 		
-		//AbstractWs ws = new WsBasic();
-		AbstractWs ws = new PerfWsDeco(new LogWsDeco(new WsBasic()));
 		Object resConv = ws.doAction(request);
 		
 		PrintWriter out = response.getWriter();

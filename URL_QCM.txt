@@ -5,3 +5,6 @@ organisation = ipssi
 ...
 apres "actualiser la liste" choisir "poo"
 et cliquer sur "effectuer qcm"
+
+et choisir ensuite "design_patterns"
+pour effectuer le 2éme qcm dans la foulée

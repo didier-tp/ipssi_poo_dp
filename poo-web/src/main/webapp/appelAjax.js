@@ -10,7 +10,7 @@ window.onload=function(){
 		var codeCible= document.getElementById("cible").value;
 		var montant = document.getElementById("montant").value;
 		
-		var url= "MyServlet?source="+ codeSource+"&cible="+codeCible+
+		var url= "MyServlet?action=conversion&source="+ codeSource+"&cible="+codeCible+
                  "&montant="+montant ;
 		console.log(url);
 		makeAjaxGetRequest(url ,  cbGererResultat);
