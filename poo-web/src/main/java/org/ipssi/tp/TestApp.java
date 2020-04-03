@@ -2,6 +2,8 @@ package org.ipssi.tp;
 
 import java.util.List;
 
+import java.util.Base64;
+
 import org.ipssi.tp.dao.DeviseDAO;
 import org.ipssi.tp.dao.DeviseDaoJdbc;
 import org.ipssi.tp.dao.DeviseDaoMemory;
@@ -11,9 +13,20 @@ import org.ipssi.tp.service.ServiceConversionImpl;
 
 public class TestApp {
 
-
-
+	static void test_base64(){
+	//Authorization: Basic dXNlcm5hbWVYOnBhc3N3b3JkWQ== 
+	String texte_en_clair = "usernameX:passwordY";
+	byte[] encodedBytes = Base64.getEncoder().encode(texte_en_clair.getBytes());
+	                
+	String texte_encode = new String(encodedBytes);
+	System.out.println("texte_encodé: " + texte_encode);
+	
+	byte[] decodedBytes = Base64.getDecoder().decode(texte_encode.getBytes());
+	System.out.println("texte_decodé " + new String(decodedBytes));
+	
+	}
 	public static void main(String[] args) {
+		test_base64();
 		//ServiceConversion serviceConv = new ServiceConversionImpl();
 		//récupération de l'instance du service partagé via singleton
 		ServiceConversion serviceConv = ServiceConversionImpl.getInstance();
