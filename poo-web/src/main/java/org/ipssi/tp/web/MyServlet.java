@@ -40,18 +40,14 @@ public class MyServlet extends HttpServlet {
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String source = request.getParameter("source");
-		String cible = request.getParameter("cible");
-		String montant = request.getParameter("montant");
+		
+		//AbstractWs ws = new WsBasic();
+		AbstractWs ws = new PerfWsDeco(new LogWsDeco(new WsBasic()));
+		Object resConv = ws.doAction(request);
+		
 		PrintWriter out = response.getWriter();
 		response.setContentType("application/json");
 		//jackson = libraie java open source qui gère le format json
-		ServiceConversion serviceConv = ServiceConversionImpl.getInstance();
-		double montantConv =serviceConv.convertir(Double.parseDouble(montant), source, cible);
-		ResConv resConv = new ResConv(Double.parseDouble(montant),
-				                      source,
-				                      cible,
-				                      montantConv);
 		ObjectMapper objMapperJackson = new ObjectMapper();
 		String resConAsJsonString = objMapperJackson.writeValueAsString(resConv);
 		out.println(resConAsJsonString);
