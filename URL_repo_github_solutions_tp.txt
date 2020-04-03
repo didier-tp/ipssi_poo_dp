@@ -1,5 +1,7 @@
 https://github.com/didier-tp/ipssi_poo_dp
 
+https://github.com/didier-mycontrib/design-patterns
+
 à cloner via git clone
 et à actualiser via git pull
 
