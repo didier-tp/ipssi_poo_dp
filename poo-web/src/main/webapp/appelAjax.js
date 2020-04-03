@@ -1,26 +1,27 @@
-
+var divrRes;
 window.onload=function(){
 
-	var btnGetDevises = document.getElementById("btnGetDevises");
+	var btnConv = document.getElementById("btnConv");
 	
 	divRes = document.getElementById("divRes");
 	
-	btnGetDevises.addEventListener("click" , function (){
-		makeAjaxGetRequest("http://localhost:8383/springBootWs/devise-api/public/devise?changeMini="+changeMini ,  cbGererResultat);
+	btnConv.addEventListener("click" , function (){
+		var codeSource = document.getElementById("source").value;
+		var codeCible= document.getElementById("cible").value;
+		var montant = document.getElementById("montant").value;
+		
+		var url= "MyServlet?source="+ codeSource+"&cible="+codeCible+
+                 "&montant="+montant ;
+		console.log(url);
+		makeAjaxGetRequest(url ,  cbGererResultat);
 	});
 	
-
+}
 
 function cbGererResultat(texteReponse){
 	//divRes.innerHTML = texteReponse;
-	var listeDeviseJs = JSON.parse(texteReponse /* au format json string */)
-	var htmlListeDevises = "<ul>" ;
-	for(i=0; i<listeDeviseJs.length ; i++){
-		htmlListeDevises = htmlListeDevises + "<li>" + listeDeviseJs[i].name + " , " 
-			                                    + listeDeviseJs[i].change + "</li>";
-	}
-	htmlListeDevises = htmlListeDevises + "</ul>";
-	divRes.innerHTML= htmlListeDevises; 
+	var resConv = JSON.parse(texteReponse /* au format json string */)
+	divRes.innerHTML= resConv.montantConverti; 
 }
 
 function makeAjaxGetRequest(url,callback) {

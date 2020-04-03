@@ -3,13 +3,14 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>conversion</title>
+<script src="appelAjax.js"></script>
 </head>
 <body>
-     <form method="GET" action="MyServlet">
-         monnaie_source:<input name="source" value='EUR' /> <br/>
-         monnaie_source:<input name="cible" value='USD' /> <br/>
-         montant:<input name="montant" value='100' /> <br/>
-         <input type="submit" value='convertir' />
-     </form>
+    
+         monnaie_source:<input id="source" name="source" value='EUR' /> <br/>
+         monnaie_cible:<input id="cible" name="cible" value='USD' /> <br/>
+         montant:<input id="montant" name="montant" value='100' /> <br/>
+         <input type="button" id="btnConv"  value='convertir' /> <br/>
+   	     res : <div id="divRes"></div>
 </body>
 </html>
